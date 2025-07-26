@@ -71,7 +71,9 @@ export default {
             errors: []
         }
     },
-
+    mounted(){
+        document.title = 'Sign Up | Studyli';
+    },
     methods: {
         submitForm() {
 

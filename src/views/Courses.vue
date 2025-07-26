@@ -15,10 +15,19 @@
                                 Categories
                             </p>
                             <ul class="menu-list">
-                                <li><a class="is-active">All Courses</a></li>
-                                <li><a>programming</a></li>
-                                <li><a>Design</a></li>
-                                <li><a>UI/UX</a></li>
+                                <li><a
+                              v-bind:class="{'is-active':!activeCategory}"
+                             @click="setActiveCategory(null)"
+                              >All Courses</a></li>
+                                <li 
+                                
+                                v-for="category in categories" v-bind:key="category.id"
+                                 
+                                @click="setActiveCategory(category)"
+                                >
+                                    <a>{{ category.title }}</a>
+                                </li>
+                                
 
                                 </ul>
                         </aside>
@@ -64,21 +73,47 @@ export default {
     name: 'Courses',
     data() {
         return {
-            courses: []
+            courses: [],
+            categories: [],
+            activeCategory: null
         }
     },
     components: {
         CourseItem
     },
-    mounted() {
+    async mounted() {
        console.log("Courses component mounted");
-       axios
-            .get('/api/v1/courses/')
+        document.title = 'Courses | Studyli';
+       await axios
+            .get('/api/v1/courses/get_categories/')
             .then(response => {
-                console.log("Courses fetched successfully:", response.data);
-                this.courses = response.data;
+                console.log("Categories fetched successfully:", response.data);
+                this.categories = response.data;
             })
+            this.getCourses();
     },
-   
+   methods: {
+        setActiveCategory(category) {
+            console.log("Active category set to:", category);
+            this.activeCategory = category;
+            
+                this.getCourses()
+            
+           
+        },
+        getCourses(){
+            let url = '/api/v1/courses/';
+            if(this.activeCategory){
+                url += '?category_id='+ this.activeCategory.id;
+            }
+            axios
+                .get(url)
+                .then(response => {
+                    console.log("Courses fetched successfully:", response.data);
+                    this.courses = response.data;
+            })
+
+        }
+    }
 }
 </script>

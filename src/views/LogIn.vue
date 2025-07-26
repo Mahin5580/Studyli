@@ -63,6 +63,9 @@ export default {
             errors: []
         }
     },
+    mounted(){
+        document.title = 'Log In | Studyli';
+    },
 
     methods: {
         submitForm() {

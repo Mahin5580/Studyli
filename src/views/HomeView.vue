@@ -41,7 +41,7 @@
             </div>
           </div>
           <div class="column is-12 has-text-centered">
-            <a class="button is-info is-large mt-5" href="#">
+            <a href="/sign-up" class="button is-info is-large mt-5" >
              
               <span>Click here to get started</span>
             </a>
@@ -80,6 +80,7 @@ export default {
     },
     mounted() {
        console.log("Courses component mounted");
+       document.title = 'Home | Studyli';
        axios
             .get('/api/v1/courses/get_frontpage_courses/')
             .then(response => {
