@@ -46,6 +46,15 @@
               <span>Click here to get started</span>
             </a>
           </div>
+          <hr>
+           <div
+                                
+              class="column is-3"
+              v-for="course in courses"
+              v-blind:key="course.id"
+              >
+                <CourseItem :course="course"/>
+              </div>
         </div>
         
       </div>
@@ -56,9 +65,28 @@
 </template>
 
 <script>
+import axios from 'axios';
+import CourseItem from '@/components/CourseItem.vue';
 
 export default {
   name: 'HomeView',
+  data() {
+        return {
+            courses: []
+        }
+    },
+    components: {
+        CourseItem
+    },
+    mounted() {
+       console.log("Courses component mounted");
+       axios
+            .get('/api/v1/courses/get_frontpage_courses/')
+            .then(response => {
+                console.log("Courses fetched successfully:", response.data);
+                this.courses = response.data;
+            })
+    },
   
 }
 </script>

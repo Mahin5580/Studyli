@@ -32,29 +32,7 @@
                                 v-for="course in courses"
                                 v-blind:key="course.id"
                                 >
-                                    <div class="card">
-                                        <div class="card-image">
-                                          <figure class="image is-4by3">
-                                            <img src="http://bulma.io/images/plateform/1280x960.png" alt="">
-                                          </figure>
-                                        </div>
-                                        <div class="card-content">
-                                            <div class="media">
-                                                <div class="media-content">
-                                                    <p class="is-size-5">{{course.title}}</p>
-                                                   
-                                                </div>
-                                            </div>
-                                            <div class="content">
-                                                <p>
-                                                    {{courses.short_description}}
-                                       </p>
-                                                <router-link :to="{name:'Course',params:{slug: course.slug}}">More</router-link>
-                                                
-                                            </div>
-
-                                        </div>
-                                    </div>
+                                  <CourseItem :course="course"/>
                                 </div>
                                
                                
@@ -80,6 +58,7 @@
 
 <script>
 import axios from 'axios';
+import CourseItem from '@/components/CourseItem.vue';
 
 export default {
     name: 'Courses',
@@ -87,6 +66,9 @@ export default {
         return {
             courses: []
         }
+    },
+    components: {
+        CourseItem
     },
     mounted() {
        console.log("Courses component mounted");

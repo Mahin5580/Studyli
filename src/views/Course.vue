@@ -52,6 +52,12 @@
                                    </textarea>
                                 </div>
                                 </div>
+                                <div class="notification is-danger"
+                                v-for="error in errors"
+                                v-bind:key="error">
+
+                                {{ error }}
+                                </div>
                                <div class="field">
                                   <div class="control">
                                     <button class="button is-link" type="submit">Submit</button>
@@ -85,6 +91,7 @@ export default {
             lessons: [],
             comments: [],
             activeLesson: null,
+            errors: [],
             comment:{
                 name: '',
                 content: '',
@@ -108,17 +115,29 @@ export default {
         submitComment(){
             console.log("Submit comment")
 
+            this.errors = [];
+            if (this.comment.name === '') {
+                this.errors.push("Name is required");
+            }
+            if (this.comment.content === '') {
+                this.errors.push("Content is required");
+            }
+
+            if(!this.errors.length){
+
+            
             axios
                 .post(`/api/v1/courses/${this.course.slug}/${this.activeLesson.slug}/`, this.comment)
                 .then(response => {
                     this.comment.name = '';
                     this.comment.content = '';
-                    alert("Comment submitted successfully:", response.data);
+                   this.comments.push(response.data);
                     
                 })
                 .catch(error => {
                     console.error("Error submitting comment:", error);
                 });
+            }
         },
         setActiveLesson(lesson) {
             this.activeLesson = lesson;
