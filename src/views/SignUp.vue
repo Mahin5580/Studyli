@@ -97,7 +97,7 @@ export default {
                     username: this.username,
                     password: this.password
                 };
-                axios.post('/api/v1/users/', formData)
+                axios.post('users/', formData)
                     .then(response => {
                         // console.log('User created:', response.data);
                         this.$router.push('/log-in');
