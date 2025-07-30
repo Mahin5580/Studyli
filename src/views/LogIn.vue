@@ -93,7 +93,7 @@ export default {
                     username: this.username,
                     password: this.password
                 };
-                axios.post('/api/v1/token/login/', formData)
+                axios.post('token/login/', formData)
                     .then(response => {
                         const token = response.data.auth_token;
 

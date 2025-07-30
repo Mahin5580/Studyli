@@ -82,7 +82,7 @@ export default {
        console.log("Courses component mounted");
        document.title = 'Home | Studyli';
        axios
-            .get('/api/v1/courses/get_frontpage_courses/')
+            .get('courses/get_frontpage_courses/')
             .then(response => {
                 console.log("Courses fetched successfully:", response.data);
                 this.courses = response.data;
