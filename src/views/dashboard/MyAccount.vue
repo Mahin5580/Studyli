@@ -7,6 +7,20 @@
       </div>
     </div>
     <section class="section">
+      <div class="columns is-multiline">
+        <div class="column is-12">
+          <h2 class="subtitle is-size-3">your active courses</h2>
+        </div>
+
+        <div 
+        class="column is-4"
+        v-for="course in courses"
+         v-bind:key="course.id"
+         >
+         <CourseItem :course="course"/>
+          
+        </div>
+      </div>
         <button @click="logout()" class="button is-danger">Log out</button>
     </section>
   </div>
@@ -14,8 +28,27 @@
 
 <script>
 import axios from 'axios';
+import Courses from '../Courses.vue';
+  import CourseItem from '@/components/CourseItem.vue';
 
 export default {
+  data(){
+    return {
+      Courses:[]
+    }
+  },
+  components:{
+    CourseItem
+  }, 
+  mounted(){
+    axios
+    .get('activates/get_activate_courses/')
+    .then(response => {
+      console.log(response.data)
+      this.courses = response.data
+  })
+},
+
   methods: {
     async logout() {
       console.log('Logging out');
