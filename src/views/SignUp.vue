@@ -71,7 +71,7 @@ export default {
         }
     },
     mounted() {
-        document.title = 'Sign up | StudyNet'
+        document.title = 'Sign up | StudyLi'
     },
     methods: {
         submitForm() {

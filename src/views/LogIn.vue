@@ -63,7 +63,7 @@ export default {
         }
     },
     mounted() {
-        document.title = 'Log in | StudyNet'
+        document.title = 'Log in | StudyLi'
     },
     methods: {
         submitForm() {

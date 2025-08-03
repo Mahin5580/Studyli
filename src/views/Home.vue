@@ -2,7 +2,7 @@
   <div class="home">
     <div class="hero is-info is-medium">
       <div class="hero-body has-text-centered">
-        <h1 class="title">Welcome to StudyNet</h1>
+        <h1 class="title">Welcome to StudyLi</h1>
 
         <h2 class="subtitle">An online place for learning what you want</h2>
       </div>
@@ -78,7 +78,7 @@ export default {
   mounted() {
       console.log('mounted')
 
-      document.title = 'Welcome | StudyNet'
+      document.title = 'Welcome | StudyLi'
 
       axios
           .get('courses/get_frontpage_courses/')

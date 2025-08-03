@@ -7,7 +7,7 @@
     </div>
 
     <section class="section">
-      THis is the about page
+      StudyLi is a smart learning platform that offers structured courses, lessons, and quizzes to help students learn effectively and track their progress.
     </section>
   </div>
 </template>
@@ -15,7 +15,7 @@
 <script>
 export default {
   mounted() {
-    document.title = 'About | StudyNet'
+    document.title = 'About | StudyLi'
   }
 }
 </script>
